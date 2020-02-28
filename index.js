@@ -9,10 +9,16 @@ function handleUserInput() {
     const userInput = $('input[id="dog-pics"]').val();
 
     // add that number to the dogAPI url
-    // collect the image URLs that DogAPI has returned
     let dogApiUrl = `https://dog.ceo/api/breeds/image/random/${userInput}`;
 
-    callDogApi(dogApiUrl);
+    // prevent API from being called if user enters number over 50
+    if (userInput > 50) {
+      $(".image-results").html(
+        `<p role="alert" class="error-msg">That's too many dogs! Please choose a number between 1 and 50</p>`
+      );
+    } else {
+      callDogApi(dogApiUrl);
+    }
   });
 }
 
@@ -25,11 +31,17 @@ function callDogApi(url) {
 }
 // insert the images as `img` elements into `section`
 function createImgElements(message) {
+  clearSlate();
   message.forEach(item =>
     $(".image-results").append(
-      `<div class="image-container"><img src=${item} alt="a dog" /></div>`
+      `<div role="figure" class="image-container"><img src=${item} alt="a dog" /></div>`
     )
   );
+}
+
+function clearSlate() {
+  $(".image-container").remove();
+  $(".error-msg").remove();
 }
 
 handleUserInput();

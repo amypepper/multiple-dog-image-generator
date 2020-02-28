@@ -1,7 +1,8 @@
 form,
 .image-results {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   padding: 20px;
   text-align: center;
@@ -17,4 +18,9 @@ label {
 }
 button {
   margin: 20px;
+}
+
+.error-msg {
+  color: red;
+  font-weight: bold;
 }
