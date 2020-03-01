@@ -26,22 +26,19 @@ function handleUserInput() {
 function callDogApi(url) {
   fetch(url)
     .then(response => response.json())
-    .then(dogObj => createImgElements(dogObj.message))
+    .then(dogObj => displayResults(dogObj.message))
     .catch(err => console.log("error: ", err));
 }
 // insert the images as `img` elements into `section`
-function createImgElements(message) {
-  clearSlate();
+function displayResults(message) {
+  let newImages = $('<section class="image-results"></section>');
   message.forEach(item =>
-    $(".image-results").append(
+    newImages.append(
       `<div role="figure" class="image-container"><img src=${item} alt="a dog" /></div>`
     )
   );
-}
-
-function clearSlate() {
-  $(".image-container").remove();
-  $(".error-msg").remove();
+  $(".image-results").replaceWith(newImages);
+  $(".image-results").removeClass("hide-image-results");
 }
 
 handleUserInput();
