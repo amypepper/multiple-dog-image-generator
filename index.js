@@ -31,6 +31,7 @@ function callDogApi(url) {
 }
 // insert the images as `img` elements into `section`
 function displayResults(message) {
+  console.log(message);
   let newImages = $('<section class="image-results"></section>');
   message.forEach(item =>
     newImages.append(
